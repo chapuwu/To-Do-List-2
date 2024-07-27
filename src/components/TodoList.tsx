@@ -8,7 +8,7 @@ export default function TodoList({ todos }: TodoListProps) {
         <div>
             <ul>
                 {todos.map((todoObject) => {
-                    return <TodoElement todo={todoObject} />
+                    return <TodoElement todo={todoObject} key={todoObject.id} />
                 })}
             </ul>
         </div>

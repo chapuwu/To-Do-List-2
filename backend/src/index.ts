@@ -15,4 +15,8 @@ app.get('/todos', async (req, res) => {
     res.send(await db.query.todos.findMany())
 })
 
+app.post('/todos', async (req, res) => {
+    const inserted = await db.insert(todos).values({ todo: req.body.todoText }).returning()
+})
+
 app.listen(3001)

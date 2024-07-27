@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import TodoList from './components/TodoList'
+import AddItems from './components/AddItems'
 
 export type Todo = {
     id: number
@@ -25,6 +26,7 @@ function App() {
         <>
             <div className='bg-slate-700 h-screen w-screen flex mb-2 flex-col items-center'>
                 <h1 className='text-white font-sans'>To do List</h1>
+                <AddItems setTodos={setTodos} />
                 <TodoList todos={todos} />
             </div>
         </>
