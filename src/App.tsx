@@ -27,7 +27,7 @@ function App() {
             <div className='bg-slate-700 h-screen w-screen flex mb-2 flex-col items-center'>
                 <h1 className='text-white font-sans'>To do List</h1>
                 <AddItems setTodos={setTodos} />
-                <TodoList todos={todos} />
+                <TodoList todos={todos} setTodos={setTodos} />
             </div>
         </>
     )

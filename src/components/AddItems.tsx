@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction, useEffect } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 import { Todo } from '../App'
 
 type AddItemsProp = { setTodos: Dispatch<SetStateAction<Todo[]>> }
@@ -23,17 +23,17 @@ export default function AddItems({ setTodos }: AddItemsProp) {
         }
     }
 
-    useEffect(() => {
-        console.log(JSON.stringify({ todo: todoInput }))
-    }, [todoInput])
-
     return (
         <form>
             <input type='text' onChange={(e) => setTodoInput(e.target.value)} value={todoInput} />
             <button
                 onClick={(e) => {
                     e.preventDefault()
-                    addItem()
+                    if (todoInput === '') {
+                        alert('no puede existir una tarea sin nada')
+                    } else {
+                        addItem()
+                    }
                 }}>
                 Add Item
             </button>
