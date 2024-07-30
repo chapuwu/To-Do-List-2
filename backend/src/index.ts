@@ -3,7 +3,7 @@ import { db } from './db'
 import bodyParser from 'body-parser'
 import { todos } from './db/schema'
 import cors from 'cors'
-import { eq } from 'drizzle-orm'
+import { eq, not } from 'drizzle-orm'
 
 const app = express()
 
@@ -29,6 +29,12 @@ app.delete('/todos', async (req, res) => {
     res.send('')
 })
 
-app.put('/todos', (req, res) => {})
+app.put('/todos', async (req, res) => {
+    await db
+        .update(todos)
+        .set({ checked: not(todos.checked) })
+        .where(eq(todos.id, req.body.id))
+    res.send('')
+})
 
 app.listen(3001)

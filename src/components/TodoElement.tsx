@@ -23,7 +23,7 @@ export default function TodoElement({ todo, setTodos }: TodoElementProps) {
     async function toogleTodo() {
         const response = await fetch('http://localhost:3001/todos', {
             method: 'PUT',
-            body: JSON.stringify({ checked: todo.checked }),
+            body: JSON.stringify({ id: todo.id }),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -45,10 +45,12 @@ export default function TodoElement({ todo, setTodos }: TodoElementProps) {
     }
 
     return (
-        <li>
+        <li className={`flex gap-2 ${todo.checked ? 'line-through' : ''}`}>
             {todo.todo}
-            <button onClick={() => deleteTodo()}>X</button>
-            <input type='checkbox' onClick={() => toogleTodo()} />
+            <button onClick={() => deleteTodo()} className='bg-red-600'>
+                X
+            </button>
+            <input type='checkbox' onChange={() => toogleTodo()} checked={todo.checked} />
         </li>
     )
 }
